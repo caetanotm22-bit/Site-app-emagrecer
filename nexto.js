@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════
    NEXTO — Landing Page JavaScript
+   Mobile-optimised with swipe support
    ═══════════════════════════════════════════════════════ */
 'use strict';
 
@@ -19,9 +20,8 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
     nav.classList.toggle('scrolled', window.scrollY > 36);
   }, { passive: true });
 
-  burger?.addEventListener('click', () => {
-    menu.classList.toggle('open');
-    const open = menu.classList.contains('open');
+  function toggleMenu(open) {
+    menu.classList.toggle('open', open);
     const spans = $$('span', burger);
     if (open) {
       spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
@@ -30,15 +30,22 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
     } else {
       spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
     }
+  }
+
+  burger?.addEventListener('click', () => {
+    const isOpen = menu.classList.contains('open');
+    toggleMenu(!isOpen);
   });
 
-  // Close menu on link click
+  // Close menu on link click or outside tap
   $$('.nav__mobile a').forEach(a => {
-    a.addEventListener('click', () => {
-      menu.classList.remove('open');
-      const spans = $$('span', burger);
-      spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
-    });
+    a.addEventListener('click', () => toggleMenu(false));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('open') && !nav.contains(e.target)) {
+      toggleMenu(false);
+    }
   });
 })();
 
@@ -49,48 +56,95 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const els = $$('[data-aos]');
   if (!els.length) return;
 
+  // Reduce motion for users who prefer it
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    els.forEach(el => el.classList.add('aos-animate'));
+    return;
+  }
+
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const delay = parseInt(e.target.getAttribute('data-aos-delay') || '0', 10);
-      setTimeout(() => e.target.classList.add('aos-animate'), delay);
+      // On mobile, reduce delays to feel snappier
+      const mobileDelay = window.innerWidth < 768 ? Math.min(delay, 100) : delay;
+      setTimeout(() => e.target.classList.add('aos-animate'), mobileDelay);
       obs.unobserve(e.target);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
   els.forEach(el => obs.observe(el));
 })();
 
 /* ══════════════════════════════════
-   3. DEMO TABS
+   3. DEMO TABS + SWIPE SUPPORT
 ══════════════════════════════════ */
 (function initDemoTabs() {
-  const tabs   = $$('.dtab');
-  const panels = $$('.dpanel');
-  if (!tabs.length) return;
+  const tabs      = $$('.dtab');
+  const panels    = $$('.dpanel');
+  const content   = $('.demo-content');
+  if (!tabs.length || !content) return;
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const id = tab.getAttribute('data-tab');
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+  let currentIdx = 0;
 
-      panels.forEach(p => {
-        if (p.id === `tab-${id}`) {
-          p.style.opacity = '0';
-          p.classList.add('active');
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            p.style.transition = 'opacity .35s ease';
-            p.style.opacity = '1';
-          }));
-        } else {
-          p.classList.remove('active');
-          p.style.opacity = '';
-          p.style.transition = '';
-        }
-      });
+  function activateTab(idx) {
+    if (idx < 0 || idx >= tabs.length) return;
+    currentIdx = idx;
+    const id = tabs[idx].getAttribute('data-tab');
+
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+
+    panels.forEach(p => {
+      if (p.id === `tab-${id}`) {
+        p.style.opacity = '0';
+        p.classList.add('active');
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          p.style.transition = 'opacity .35s ease';
+          p.style.opacity = '1';
+        }));
+      } else {
+        p.classList.remove('active');
+        p.style.opacity = '';
+        p.style.transition = '';
+      }
     });
+
+    // Scroll active tab button into view (for mobile horizontal scroll)
+    tabs[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activateTab(i));
   });
+
+  // ── Touch/swipe support ──────────────────────────────
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchMoved  = false;
+
+  content.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchMoved  = false;
+  }, { passive: true });
+
+  content.addEventListener('touchmove', (e) => {
+    const dx = Math.abs(e.touches[0].clientX - touchStartX);
+    const dy = Math.abs(e.touches[0].clientY - touchStartY);
+    if (dx > dy && dx > 8) touchMoved = true;
+  }, { passive: true });
+
+  content.addEventListener('touchend', (e) => {
+    if (!touchMoved) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) < 40) return; // minimum swipe distance
+    if (dx < 0) {
+      activateTab(currentIdx + 1); // swipe left → next
+    } else {
+      activateTab(currentIdx - 1); // swipe right → prev
+    }
+  }, { passive: true });
 })();
 
 /* ══════════════════════════════════
@@ -116,13 +170,7 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const spotsEl = $('#wl-spots');
   if (!form) return;
 
-  // Cosmetic spot countdown
   let spots = 187;
-  const tickSpots = setInterval(() => {
-    if (spots <= 172) { clearInterval(tickSpots); return; }
-    spots -= Math.floor(Math.random() * 2);
-    if (spotsEl) spotsEl.textContent = spots;
-  }, 10000);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -136,6 +184,12 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
     });
     if (!valid) return;
 
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+      shakeEl(emailEl);
+      return;
+    }
+
     const btn  = form.querySelector('[type="submit"]');
     const txt  = btn.querySelector('.btn-txt');
     const orig = txt.textContent;
@@ -144,7 +198,7 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
     txt.textContent = 'Garantindo sua vaga...';
     btn.style.opacity = '.75';
 
-    await new Promise(r => setTimeout(r, 1800));
+    await new Promise(r => setTimeout(r, 1600));
 
     const payload = {
       name:      nameEl.value.trim(),
@@ -162,13 +216,19 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
     txt.textContent = orig;
     btn.style.opacity = '';
 
+    // Scroll to success on mobile
+    if (window.innerWidth < 768) {
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     triggerConfetti();
   });
 
   function shakeEl(el) {
     el.style.borderColor = '#FF4D5A';
-    el.style.animation = 'shake .4s ease';
-    setTimeout(() => { el.style.borderColor = ''; el.style.animation = ''; }, 500);
+    el.style.animation   = 'shake .4s ease';
+    el.focus();
+    setTimeout(() => { el.style.borderColor = ''; el.style.animation = ''; }, 600);
   }
 })();
 
@@ -177,9 +237,10 @@ const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 ══════════════════════════════════ */
 function triggerConfetti() {
   const cols = ['#A25CFF','#4D8CFF','#26E38A','#FF9A3D','#F3F5FA','#22D3EE'];
-  for (let i = 0; i < 70; i++) {
-    const el = document.createElement('div');
-    const sz = Math.random() * 9 + 4;
+  const count = window.innerWidth < 480 ? 40 : 70; // fewer on small screens
+  for (let i = 0; i < count; i++) {
+    const el  = document.createElement('div');
+    const sz  = Math.random() * 9 + 4;
     const col = cols[Math.floor(Math.random() * cols.length)];
     const x   = Math.random() * window.innerWidth;
     const dur = Math.random() * 1400 + 900;
@@ -220,15 +281,18 @@ function triggerConfetti() {
 })();
 
 /* ══════════════════════════════════
-   8. SMOOTH SCROLL
+   8. SMOOTH SCROLL (nav links)
 ══════════════════════════════════ */
 (function initSmoothScroll() {
   $$('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.scrollY - 74;
+      const offset = window.innerWidth < 768 ? 70 : 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
@@ -263,7 +327,7 @@ window.shareWA = shareWA;
       });
       obs.unobserve(e.target);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
   bars.forEach(b => obs.observe(b));
 })();
@@ -272,20 +336,22 @@ window.shareWA = shareWA;
    11. RING ANIMATION
 ══════════════════════════════════ */
 (function initRing() {
-  const ring = document.querySelector('.ring circle:last-child');
-  if (!ring) return;
+  const rings = $$('.ring circle:last-child');
+  if (!rings.length) return;
 
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      ring.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1) .5s';
-      ring.style.strokeDashoffset = '72';
-      obs.unobserve(ring);
+      e.target.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1) .5s';
+      e.target.style.strokeDashoffset = '72';
+      obs.unobserve(e.target);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
-  ring.style.strokeDashoffset = '201';
-  obs.observe(ring);
+  rings.forEach(r => {
+    r.style.strokeDashoffset = '201';
+    obs.observe(r);
+  });
 })();
 
 /* ══════════════════════════════════
@@ -304,7 +370,7 @@ window.shareWA = shareWA;
       });
       obs.unobserve(fill);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
   obs.observe(fill);
 })();
 
@@ -315,7 +381,7 @@ window.shareWA = shareWA;
   const el = $('#wl-spots');
   if (!el) return;
   function drop() {
-    const delay = 18000 + Math.random() * 20000;
+    const delay = 18000 + Math.random() * 22000;
     setTimeout(() => {
       const cur = parseInt(el.textContent, 10);
       if (cur <= 170) return;
@@ -330,7 +396,7 @@ window.shareWA = shareWA;
 })();
 
 /* ══════════════════════════════════
-   14. PARALLAX HERO ORBS
+   14. PARALLAX HERO ORBS (desktop only)
 ══════════════════════════════════ */
 (function initParallax() {
   if (window.innerWidth < 768) return;
@@ -350,20 +416,19 @@ window.shareWA = shareWA;
 })();
 
 /* ══════════════════════════════════
-   15. PAIN CARDS — emoji bounce on hover
+   15. PAIN CARDS — emoji bounce on hover/tap
 ══════════════════════════════════ */
 (function initPainCards() {
   $$('.pain-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
+    function bounceEmoji() {
       const em = card.querySelector('.pain-emoji');
       if (!em) return;
       em.style.transform = 'scale(1.25) rotate(-6deg)';
       em.style.transition = 'transform .3s ease';
-    });
-    card.addEventListener('mouseleave', () => {
-      const em = card.querySelector('.pain-emoji');
-      if (em) em.style.transform = '';
-    });
+      setTimeout(() => { em.style.transform = ''; }, 400);
+    }
+    card.addEventListener('mouseenter', bounceEmoji);
+    card.addEventListener('touchstart', bounceEmoji, { passive: true });
   });
 })();
 
@@ -372,6 +437,7 @@ window.shareWA = shareWA;
 ══════════════════════════════════ */
 (function initRadios() {
   $$('.wl-opt').forEach(opt => {
+    opt.setAttribute('tabindex', '0');
     opt.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -379,40 +445,51 @@ window.shareWA = shareWA;
         if (inp) inp.checked = true;
       }
     });
+    // Also handle tap directly on label
+    opt.addEventListener('click', () => {
+      const inp = opt.querySelector('input');
+      if (inp) inp.checked = true;
+    });
   });
 })();
 
 /* ══════════════════════════════════
-   17. NOTIFICATION CARD — cosmetic typing
+   17. NOTIFICATION CARD — cycling messages
 ══════════════════════════════════ */
 (function initNotifTyping() {
-  const notif = document.querySelector('.app-notif-card');
-  if (!notif) return;
+  // Cycle all notification cards (desktop + mobile)
+  const notifCards = $$('.app-notif-card');
+  if (!notifCards.length) return;
 
   const messages = [
     { av: '👩‍⚕️', name: 'Juliana (Nutricionista)', msg: 'Ajustei seu plano para hoje — você tem uma quarta corrida. 🥗' },
     { av: '👨‍🏋️', name: 'Lucas (Personal)', msg: 'Treino de hoje: 25 min lower body. Pode fazer às 17h! 💪' },
     { av: '👨‍⚕️', name: 'Dr. Rafael (Médico)', msg: 'Seus marcadores estão ótimos. Continue assim! 🩺' },
-    { av: '🤖', name: 'Nexto AI', msg: 'Você está 78% do seu objetivo semanal. Bora! 🚀' },
+    { av: '🤖',   name: 'Nexto AI', msg: 'Você está 78% do seu objetivo semanal. Bora! 🚀' },
   ];
 
   let idx = 0;
-  setInterval(() => {
+
+  function cycleNotif(notif) {
     idx = (idx + 1) % messages.length;
-    const m = messages[idx];
-    const av = notif.querySelector('.notif-avatar');
+    const m    = messages[idx];
+    const av   = notif.querySelector('.notif-avatar');
     const name = notif.querySelector('.notif-body strong');
     const msg  = notif.querySelector('.notif-body p');
 
     notif.style.transition = 'opacity .3s ease';
     notif.style.opacity = '0';
     setTimeout(() => {
-      if (av) av.textContent = m.av;
+      if (av)   av.textContent   = m.av;
       if (name) name.textContent = m.name;
-      if (msg) msg.textContent = m.msg;
+      if (msg)  msg.textContent  = m.msg;
       notif.style.opacity = '1';
     }, 320);
-  }, 4000);
+  }
+
+  notifCards.forEach(notif => {
+    setInterval(() => cycleNotif(notif), 4000);
+  });
 })();
 
 /* ══════════════════════════════════
@@ -442,13 +519,41 @@ window.shareWA = shareWA;
         ));
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.35 });
 
   sections.forEach(s => obs.observe(s));
 })();
 
 /* ══════════════════════════════════
-   20. READY LOG
+   20. MOBILE MOCKUP — floating notif animation
+══════════════════════════════════ */
+(function initMobileNotifs() {
+  const notif1 = $('.mob-notif--1');
+  const notif2 = $('.mob-notif--2');
+  if (!notif1 || !notif2) return;
+
+  // Subtle entrance pulse animation via JS
+  function pulseCard(el, delay) {
+    setTimeout(() => {
+      el.style.transition = 'transform .6s cubic-bezier(.4,0,.2,1), box-shadow .6s ease';
+      el.style.transform  = 'translateY(-3px) scale(1.02)';
+      el.style.boxShadow  = '0 12px 40px rgba(162,92,255,.25), 0 0 0 1px rgba(255,255,255,.06)';
+      setTimeout(() => {
+        el.style.transform = '';
+        el.style.boxShadow = '';
+      }, 600);
+    }, delay);
+  }
+
+  // Pulse notifs periodically to draw attention
+  setInterval(() => {
+    pulseCard(notif1, 0);
+    pulseCard(notif2, 800);
+  }, 5000);
+})();
+
+/* ══════════════════════════════════
+   21. READY LOG
 ══════════════════════════════════ */
 (function onReady() {
   console.log(
