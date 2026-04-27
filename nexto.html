@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="nexto.css" />
+  <script src="https://js.stripe.com/v3/" async></script>
 </head>
 <body>
 
@@ -31,13 +32,12 @@
       <span></span><span></span><span></span>
     </button>
   </div>
-  <!-- Mobile menu -->
   <div class="nav__mobile" id="mobileMenu">
     <a href="#como-funciona">Como funciona</a>
     <a href="#equipe">Sua equipe</a>
     <a href="#beneficios">Benefícios</a>
     <a href="#precos">Planos</a>
-    <a href="#precos" class="btn btn--primary">Começar agora</a>
+    <a href="#precos" class="btn btn--primary">Começar agora — A$29/mês</a>
   </div>
 </nav>
 
@@ -55,7 +55,7 @@
     <div class="hero__content" data-aos="fade-right">
       <div class="hero__badge">
         <span class="pulse-dot"></span>
-        Acesso antecipado — A$20/mês
+        Acesso antecipado — A$29/mês
       </div>
 
       <h1 class="hero__h1">
@@ -91,10 +91,9 @@
       </div>
     </div>
 
-    <!-- Mobile-only hero mockup (shown below text on mobile) -->
+    <!-- Mobile-only hero mockup -->
     <div class="hero__mockup hero__mockup--mobile" data-aos="fade-up" data-aos-delay="200">
       <div class="mobile-app-preview">
-        <!-- Notification stack -->
         <div class="mob-notif mob-notif--1" data-aos="fade-right" data-aos-delay="350">
           <span class="mob-notif__av">👩‍⚕️</span>
           <div class="mob-notif__body">
@@ -104,7 +103,6 @@
           <span class="mob-notif__time">agora</span>
         </div>
 
-        <!-- Central phone -->
         <div class="mob-phone-wrap">
           <div class="phone">
             <div class="phone__notch"></div>
@@ -190,7 +188,6 @@
           </div>
         </div>
 
-        <!-- Bottom notif -->
         <div class="mob-notif mob-notif--2" data-aos="fade-left" data-aos-delay="500">
           <span class="mob-notif__av">👨‍🏋️</span>
           <div class="mob-notif__body">
@@ -208,7 +205,6 @@
         <div class="phone">
           <div class="phone__notch"></div>
           <div class="phone__screen">
-            <!-- Status bar -->
             <div class="sbar">
               <span>9:41</span>
               <div class="sbar__icons">
@@ -217,8 +213,6 @@
                 <svg width="22" height="10" viewBox="0 0 22 10" fill="none"><rect x="0.5" y="0.5" width="18" height="9" rx="3.5" stroke="currentColor" stroke-opacity=".35"/><rect x="2" y="2" width="14" height="6" rx="2" fill="currentColor"/><path d="M20 3.5v3a1.5 1.5 0 000-3z" fill="currentColor" fill-opacity=".4"/></svg>
               </div>
             </div>
-
-            <!-- Greeting -->
             <div class="app-greeting">
               <div>
                 <p class="app-hi">Bom dia,</p>
@@ -230,8 +224,6 @@
                 <span class="app-notif">3</span>
               </div>
             </div>
-
-            <!-- Progress card -->
             <div class="app-card app-progress-card">
               <div class="apc-left">
                 <p class="apc-label">Progresso de Hoje</p>
@@ -250,29 +242,21 @@
               <div class="apc-right">
                 <div class="apc-row">
                   <span class="apc-icon" style="color:#26E38A">🔥</span>
-                  <div class="apc-bar-wrap">
-                    <div class="apc-bar-bg"><div class="apc-bar-fill" style="width:63%;background:linear-gradient(90deg,#26E38A,#4D8CFF)"></div></div>
-                  </div>
+                  <div class="apc-bar-wrap"><div class="apc-bar-bg"><div class="apc-bar-fill" style="width:63%;background:linear-gradient(90deg,#26E38A,#4D8CFF)"></div></div></div>
                   <span class="apc-pct">63%</span>
                 </div>
                 <div class="apc-row">
                   <span class="apc-icon">👟</span>
-                  <div class="apc-bar-wrap">
-                    <div class="apc-bar-bg"><div class="apc-bar-fill" style="width:84%;background:linear-gradient(90deg,#A25CFF,#4D8CFF)"></div></div>
-                  </div>
+                  <div class="apc-bar-wrap"><div class="apc-bar-bg"><div class="apc-bar-fill" style="width:84%;background:linear-gradient(90deg,#A25CFF,#4D8CFF)"></div></div></div>
                   <span class="apc-pct">84%</span>
                 </div>
                 <div class="apc-row">
                   <span class="apc-icon" style="color:#FF9A3D">🎯</span>
-                  <div class="apc-bar-wrap">
-                    <div class="apc-bar-bg"><div class="apc-bar-fill" style="width:66%;background:linear-gradient(90deg,#FF9A3D,#FF5F5F)"></div></div>
-                  </div>
+                  <div class="apc-bar-wrap"><div class="apc-bar-bg"><div class="apc-bar-fill" style="width:66%;background:linear-gradient(90deg,#FF9A3D,#FF5F5F)"></div></div></div>
                   <span class="apc-pct">66%</span>
                 </div>
               </div>
             </div>
-
-            <!-- Coach notification -->
             <div class="app-notif-card">
               <div class="notif-dot"></div>
               <div class="notif-avatar">👩‍⚕️</div>
@@ -282,8 +266,6 @@
               </div>
               <span class="notif-time">agora</span>
             </div>
-
-            <!-- Today's plan -->
             <div class="app-section-label">Seu plano de hoje</div>
             <div class="app-plan-items">
               <div class="plan-item">
@@ -302,8 +284,6 @@
                 <svg class="plan-arr" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
               </div>
             </div>
-
-            <!-- Nav bar -->
             <div class="app-navbar">
               <div class="app-nav-item active"><span>🏠</span><small>Home</small></div>
               <div class="app-nav-item"><span>📋</span><small>Plano</small></div>
@@ -313,30 +293,52 @@
             </div>
           </div>
         </div>
-
-        <!-- Floating team cards -->
         <div class="float-card float-card--1" data-aos="fade-right" data-aos-delay="400">
           <div class="fc-icon">👩‍⚕️</div>
-          <div class="fc-body">
-            <strong>Juliana</strong>
-            <small>Nutricionista · Online</small>
-          </div>
+          <div class="fc-body"><strong>Juliana</strong><small>Nutricionista · Online</small></div>
           <div class="fc-dot fc-dot--green"></div>
         </div>
-
         <div class="float-card float-card--2" data-aos="fade-left" data-aos-delay="500">
           <div class="fc-icon">👨‍⚕️</div>
-          <div class="fc-body">
-            <strong>Dr. Rafael</strong>
-            <small>Médico · Online</small>
-          </div>
+          <div class="fc-body"><strong>Dr. Rafael</strong><small>Médico · Online</small></div>
           <div class="fc-dot fc-dot--green"></div>
         </div>
-
         <div class="float-card float-card--3" data-aos="fade-right" data-aos-delay="600">
           <div class="fc-streak">🔥 12 dias seguidos!</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ APP SHOWCASE — imagens reais ═══════════════════ -->
+<section class="app-showcase" id="app-preview">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="eyebrow">O app na prática</span>
+      <h2>Veja como é ter<br/><span class="grad-text">uma equipe real no bolso</span></h2>
+    </div>
+
+    <div class="showcase-scroll" data-aos="fade-up" data-aos-delay="80">
+      <div class="showcase-item">
+        <img src="img/app-dashboard.jpg" alt="Dashboard do app Nexto com progresso diário, refeições e hábitos" loading="lazy" />
+        <p class="showcase-caption">Dashboard com progresso em tempo real</p>
+      </div>
+      <div class="showcase-item">
+        <img src="img/app-notifications.jpg" alt="Notificações do time Nexto — nutricionista, personal e médico" loading="lazy" />
+        <p class="showcase-caption">Sua equipe te chama todo dia</p>
+      </div>
+      <div class="showcase-item">
+        <img src="img/app-ai-coach.jpg" alt="AI Coach Nexto adaptando o plano à rotina do usuário" loading="lazy" />
+        <p class="showcase-caption">AI Coach adapta tudo à sua vida</p>
+      </div>
+    </div>
+
+    <div class="showcase-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Quero esse app agora
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -364,30 +366,12 @@
     </div>
 
     <div class="pain-grid">
-      <div class="pain-card" data-aos="fade-up" data-aos-delay="0">
-        <span class="pain-emoji">😮‍💨</span>
-        <p>"Começo segunda motivado, sexta já desisti."</p>
-      </div>
-      <div class="pain-card" data-aos="fade-up" data-aos-delay="60">
-        <span class="pain-emoji">🔄</span>
-        <p>"Emagreço 5kg, engordo 7. Todo ano igual."</p>
-      </div>
-      <div class="pain-card" data-aos="fade-up" data-aos-delay="120">
-        <span class="pain-emoji">😵</span>
-        <p>"Não sei se faço low carb, jejum ou musculação."</p>
-      </div>
-      <div class="pain-card" data-aos="fade-up" data-aos-delay="180">
-        <span class="pain-emoji">😩</span>
-        <p>"Médico, nutricionista e personal falam coisas diferentes."</p>
-      </div>
-      <div class="pain-card" data-aos="fade-up" data-aos-delay="240">
-        <span class="pain-emoji">⏱️</span>
-        <p>"Não tenho tempo de agendar consulta toda semana."</p>
-      </div>
-      <div class="pain-card" data-aos="fade-up" data-aos-delay="300">
-        <span class="pain-emoji">💸</span>
-        <p>"Pagar médico + nutricionista + personal é caro demais."</p>
-      </div>
+      <div class="pain-card" data-aos="fade-up" data-aos-delay="0"><span class="pain-emoji">😮‍💨</span><p>"Começo segunda motivado, sexta já desisti."</p></div>
+      <div class="pain-card" data-aos="fade-up" data-aos-delay="60"><span class="pain-emoji">🔄</span><p>"Emagreço 5kg, engordo 7. Todo ano igual."</p></div>
+      <div class="pain-card" data-aos="fade-up" data-aos-delay="120"><span class="pain-emoji">😵</span><p>"Não sei se faço low carb, jejum ou musculação."</p></div>
+      <div class="pain-card" data-aos="fade-up" data-aos-delay="180"><span class="pain-emoji">😩</span><p>"Médico, nutricionista e personal falam coisas diferentes."</p></div>
+      <div class="pain-card" data-aos="fade-up" data-aos-delay="240"><span class="pain-emoji">⏱️</span><p>"Não tenho tempo de agendar consulta toda semana."</p></div>
+      <div class="pain-card" data-aos="fade-up" data-aos-delay="300"><span class="pain-emoji">💸</span><p>"Pagar médico + nutricionista + personal é caro demais."</p></div>
     </div>
 
     <div class="pain-truth" data-aos="fade-up">
@@ -395,6 +379,14 @@
         <span class="truth-mark">💡</span>
         <p>A verdade é que <strong>famosos e atletas</strong> nunca fizeram isso sozinhos — eles têm uma <strong>equipe integrada</strong> que conversa entre si e adapta tudo para eles. O Nexto traz exatamente isso para você.</p>
       </div>
+    </div>
+
+    <div class="section-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Resolver isso de uma vez
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="section-cta__note">14 dias de garantia — sem risco</p>
     </div>
   </div>
 </section>
@@ -409,7 +401,6 @@
     </div>
 
     <div class="how-steps">
-      <!-- Step 1 -->
       <div class="how-step" data-aos="fade-up" data-aos-delay="0">
         <div class="how-step__num">01</div>
         <div class="how-step__body">
@@ -418,10 +409,7 @@
           <div class="how-step__tag">Personalização profunda</div>
         </div>
       </div>
-
       <div class="how-connector"><div class="connector-line"></div></div>
-
-      <!-- Step 2 -->
       <div class="how-step" data-aos="fade-up" data-aos-delay="100">
         <div class="how-step__num">02</div>
         <div class="how-step__body">
@@ -430,10 +418,7 @@
           <div class="how-step__tag">Time integrado</div>
         </div>
       </div>
-
       <div class="how-connector"><div class="connector-line"></div></div>
-
-      <!-- Step 3 -->
       <div class="how-step" data-aos="fade-up" data-aos-delay="200">
         <div class="how-step__num">03</div>
         <div class="how-step__body">
@@ -442,10 +427,7 @@
           <div class="how-step__tag">Proativo, não passivo</div>
         </div>
       </div>
-
       <div class="how-connector"><div class="connector-line"></div></div>
-
-      <!-- Step 4 -->
       <div class="how-step" data-aos="fade-up" data-aos-delay="300">
         <div class="how-step__num">04</div>
         <div class="how-step__body">
@@ -455,8 +437,34 @@
         </div>
       </div>
     </div>
+
+    <div class="section-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Começar agora — A$29/mês
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
+
+<!-- ═══════════════════ LIFESTYLE BANNER — imagem real ═══════════════════ -->
+<div class="lifestyle-banner">
+  <div class="container">
+    <div class="lifestyle-inner" data-aos="fade-up">
+      <div class="lifestyle-img-wrap">
+        <img src="img/lifestyle-team.jpg" alt="Mulher usando o Nexto com equipe integrada de saúde" loading="lazy" class="lifestyle-img" />
+      </div>
+      <div class="lifestyle-text">
+        <h3>Médico. Nutricionista. Personal.<br/><span class="grad-text">Trabalhando juntos por você.</span></h3>
+        <p>Não são profissionais isolados dando conselhos separados. É um time integrado que compartilha seus dados, conversa entre si e adapta tudo em tempo real.</p>
+        <a href="#precos" class="btn btn--primary">
+          Montar meu time agora
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════ EQUIPE ═══════════════════ -->
 <section class="team" id="equipe">
@@ -535,29 +543,27 @@
       </div>
     </div>
 
-    <!-- Integração visual -->
     <div class="team-integration" data-aos="fade-up">
       <div class="integration-card">
         <div class="intg-icon">🔗</div>
-        <div>
-          <strong>Todos conectados</strong>
-          <p>Médico, nutricionista e personal têm acesso ao mesmo painel — e sabem exatamente o que está acontecendo com você.</p>
-        </div>
+        <div><strong>Todos conectados</strong><p>Médico, nutricionista e personal têm acesso ao mesmo painel — e sabem exatamente o que está acontecendo com você.</p></div>
       </div>
       <div class="integration-card">
         <div class="intg-icon">💬</div>
-        <div>
-          <strong>Se comunicam entre si</strong>
-          <p>Quando o médico detecta algo, o nutricionista e o personal já ajustam automaticamente. Zero burocracia para você.</p>
-        </div>
+        <div><strong>Se comunicam entre si</strong><p>Quando o médico detecta algo, o nutricionista e o personal já ajustam automaticamente. Zero burocracia para você.</p></div>
       </div>
       <div class="integration-card">
         <div class="intg-icon">📲</div>
-        <div>
-          <strong>Chegam até você</strong>
-          <p>Não espere lembrar de abrir o app. Eles te notificam, te motivam e te ajustam todos os dias.</p>
-        </div>
+        <div><strong>Chegam até você</strong><p>Não espere lembrar de abrir o app. Eles te notificam, te motivam e te ajustam todos os dias.</p></div>
       </div>
+    </div>
+
+    <div class="section-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Ter minha equipe completa
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="section-cta__note">Menos que um café por dia · Cancele quando quiser</p>
     </div>
   </div>
 </section>
@@ -579,38 +585,14 @@
     </div>
 
     <div class="demo-content" data-aos="fade-up" data-aos-delay="100">
-
-      <!-- Morning -->
       <div class="dpanel active" id="tab-morning">
         <div class="dpanel__phone">
-          <div class="dphone">
-            <div class="dchat">
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👩‍⚕️</div>
-                <div class="dc-bubble">
-                  <strong>Juliana (Nutricionista)</strong>
-                  <p>Bom dia! Vi que você dormiu bem ontem e completou o treino. Hoje seu café da manhã é reforçado para recuperação muscular. 💪</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👨‍🏋️</div>
-                <div class="dc-bubble">
-                  <strong>Lucas (Personal)</strong>
-                  <p>Treino de hoje: membros inferiores, 30 min. Ideal para fazer depois das 17h conforme sua rotina habitual. 🏋️</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-user">
-                <div class="dc-bubble dc-user-bubble"><p>Perfeito! Vou seguir isso 👍</p></div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">🤖</div>
-                <div class="dc-bubble">
-                  <strong>Nexto AI</strong>
-                  <p>Ótimo! Lembramos você às 16h30. Você está 78% do objetivo semanal. Continue assim! 🚀</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="dphone"><div class="dchat">
+            <div class="dc-msg dc-bot"><div class="dc-av">👩‍⚕️</div><div class="dc-bubble"><strong>Juliana (Nutricionista)</strong><p>Bom dia! Vi que você dormiu bem ontem e completou o treino. Hoje seu café da manhã é reforçado para recuperação muscular. 💪</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👨‍🏋️</div><div class="dc-bubble"><strong>Lucas (Personal)</strong><p>Treino de hoje: membros inferiores, 30 min. Ideal para fazer depois das 17h conforme sua rotina habitual. 🏋️</p></div></div>
+            <div class="dc-msg dc-user"><div class="dc-bubble dc-user-bubble"><p>Perfeito! Vou seguir isso 👍</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">🤖</div><div class="dc-bubble"><strong>Nexto AI</strong><p>Ótimo! Lembramos você às 16h30. Você está 78% do objetivo semanal. Continue assim! 🚀</p></div></div>
+          </div></div>
         </div>
         <div class="dpanel__text">
           <h3>Acordou. O time já trabalhou.</h3>
@@ -624,37 +606,14 @@
         </div>
       </div>
 
-      <!-- Fail -->
       <div class="dpanel" id="tab-fail">
         <div class="dpanel__phone">
-          <div class="dphone">
-            <div class="dchat">
-              <div class="dc-msg dc-user">
-                <div class="dc-bubble dc-user-bubble"><p>Comi pizza hoje à noite e não treinei 😔</p></div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👩‍⚕️</div>
-                <div class="dc-bubble">
-                  <strong>Juliana (Nutricionista)</strong>
-                  <p>Sem problema! Uma pizza não destrói nada. Ajustei o jantar de amanhã para equilibrar — e não é nenhum sofrimento. 😊</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👨‍🏋️</div>
-                <div class="dc-bubble">
-                  <strong>Lucas (Personal)</strong>
-                  <p>Reorganizei seus treinos da semana. Sem precisar recuperar tudo de uma vez. Gradual e sustentável. 💪</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">🤖</div>
-                <div class="dc-bubble">
-                  <strong>Nexto AI</strong>
-                  <p>Olha: você completou 5 dos últimos 7 treinos e 80% das refeições. Isso é progresso real. Um dia não apaga isso. ❤️</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="dphone"><div class="dchat">
+            <div class="dc-msg dc-user"><div class="dc-bubble dc-user-bubble"><p>Comi pizza hoje à noite e não treinei 😔</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👩‍⚕️</div><div class="dc-bubble"><strong>Juliana (Nutricionista)</strong><p>Sem problema! Uma pizza não destrói nada. Ajustei o jantar de amanhã para equilibrar — e não é nenhum sofrimento. 😊</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👨‍🏋️</div><div class="dc-bubble"><strong>Lucas (Personal)</strong><p>Reorganizei seus treinos da semana. Sem precisar recuperar tudo de uma vez. Gradual e sustentável. 💪</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">🤖</div><div class="dc-bubble"><strong>Nexto AI</strong><p>Olha: você completou 5 dos últimos 7 treinos e 80% das refeições. Isso é progresso real. Um dia não apaga isso. ❤️</p></div></div>
+          </div></div>
         </div>
         <div class="dpanel__text">
           <h3>Falhou. O time reorganizou. Você continua.</h3>
@@ -668,40 +627,17 @@
         </div>
       </div>
 
-      <!-- Busy -->
       <div class="dpanel" id="tab-busy">
         <div class="dpanel__phone">
-          <div class="dphone">
-            <div class="dchat">
-              <div class="dc-msg dc-user">
-                <div class="dc-bubble dc-user-bubble"><p>Hoje tenho reuniões o dia todo, estou super ocupado</p></div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👨‍🏋️</div>
-                <div class="dc-bubble">
-                  <strong>Lucas (Personal)</strong>
-                  <p>Entendido! Treino de hoje: 12 minutos em casa, sem equipamento. Pode fazer antes ou depois das reuniões. 🏠</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👩‍⚕️</div>
-                <div class="dc-bubble">
-                  <strong>Juliana (Nutricionista)</strong>
-                  <p>Para o almoço: 3 opções de deliveries na sua região que cabem no seu plano. Sem precisar cozinhar. 📦</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">🤖</div>
-                <div class="dc-bubble">
-                  <strong>Nexto AI</strong>
-                  <p>Dia corrido é parte da vida. Adaptamos para que você mantenha o progresso mesmo assim. 👊</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="dphone"><div class="dchat">
+            <div class="dc-msg dc-user"><div class="dc-bubble dc-user-bubble"><p>Hoje tenho reuniões o dia todo, estou super ocupado</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👨‍🏋️</div><div class="dc-bubble"><strong>Lucas (Personal)</strong><p>Entendido! Treino de hoje: 12 minutos em casa, sem equipamento. Pode fazer antes ou depois das reuniões. 🏠</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👩‍⚕️</div><div class="dc-bubble"><strong>Juliana (Nutricionista)</strong><p>Para o almoço: 3 opções de deliveries na sua região que cabem no seu plano. Sem precisar cozinhar. 📦</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">🤖</div><div class="dc-bubble"><strong>Nexto AI</strong><p>Dia corrido é parte da vida. Adaptamos para que você mantenha o progresso mesmo assim. 👊</p></div></div>
+          </div></div>
         </div>
         <div class="dpanel__text">
-          <h3>A vida atrapanhou. O plano se ajustou.</h3>
+          <h3>A vida atrapalhou. O plano se ajustou.</h3>
           <p>O Nexto não exige que sua vida seja perfeita. Ele funciona <em>dentro</em> da sua vida real — corrida, caótica, imprevisível.</p>
           <ul class="dpanel__list">
             <li>✅ Treinos de 10-12 min quando necessário</li>
@@ -712,53 +648,57 @@
         </div>
       </div>
 
-      <!-- Weekend -->
       <div class="dpanel" id="tab-weekend">
         <div class="dpanel__phone">
-          <div class="dphone">
-            <div class="dchat">
-              <div class="dc-msg dc-user">
-                <div class="dc-bubble dc-user-bubble"><p>Final de semana com família, provavelmente vou comer fora</p></div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👩‍⚕️</div>
-                <div class="dc-bubble">
-                  <strong>Juliana (Nutricionista)</strong>
-                  <p>Que ótimo! Viver também faz parte 😊 Ajustei sexta e domingo para equilibrar — sabado é livre. Curta sem culpa!</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">👨‍⚕️</div>
-                <div class="dc-bubble">
-                  <strong>Dr. Rafael (Médico)</strong>
-                  <p>Relaxamento e socialização têm impacto positivo real nos hormônios e no metabolismo. Aproveite. 🧠</p>
-                </div>
-              </div>
-              <div class="dc-msg dc-bot">
-                <div class="dc-av">🤖</div>
-                <div class="dc-bubble">
-                  <strong>Nexto AI</strong>
-                  <p>Semana fechada: 74% de consistência. ↑ 18% vs. semana anterior. Você está evoluindo de verdade! 🎯</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="dphone"><div class="dchat">
+            <div class="dc-msg dc-user"><div class="dc-bubble dc-user-bubble"><p>Final de semana com família, provavelmente vou comer fora</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👩‍⚕️</div><div class="dc-bubble"><strong>Juliana (Nutricionista)</strong><p>Que ótimo! Viver também faz parte 😊 Ajustei sexta e domingo para equilibrar — sábado é livre. Curta sem culpa!</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">👨‍⚕️</div><div class="dc-bubble"><strong>Dr. Rafael (Médico)</strong><p>Relaxamento e socialização têm impacto positivo real nos hormônios e no metabolismo. Aproveite. 🧠</p></div></div>
+            <div class="dc-msg dc-bot"><div class="dc-av">🤖</div><div class="dc-bubble"><strong>Nexto AI</strong><p>Semana fechada: 74% de consistência. ↑ 18% vs. semana anterior. Você está evoluindo de verdade! 🎯</p></div></div>
+          </div></div>
         </div>
         <div class="dpanel__text">
           <h3>Final de semana de verdade. Com liberdade.</h3>
           <p>O objetivo nunca foi tirar prazer da sua vida. O Nexto equilibra tudo para que você possa viver — e ainda progredir.</p>
           <ul class="dpanel__list">
-            <li>✅ Sabado livre sem culpa</li>
+            <li>✅ Sábado livre sem culpa</li>
             <li>✅ Médico confirma que descanso é parte do plano</li>
             <li>✅ Semana reorganizada ao redor do final de semana</li>
             <li>✅ Relatório de evolução toda semana</li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════ LIFESTYLE GALLERY — imagens reais ═══════════════════ -->
+<div class="lifestyle-gallery">
+  <div class="container">
+    <div class="lg-grid" data-aos="fade-up">
+      <div class="lg-item lg-item--tall">
+        <img src="img/lifestyle-rest-day.jpg" alt="Mulher usando o Nexto: app mostra dia de descanso com suporte do AI coach" loading="lazy" />
+        <div class="lg-caption">Dias de descanso também são parte do plano</div>
+      </div>
+      <div class="lg-col">
+        <div class="lg-item">
+          <img src="img/lifestyle-nutrition.jpg" alt="Nutricionista Nexto sugerindo receita saudável e personalizada" loading="lazy" />
+          <div class="lg-caption">Receitas adaptadas ao seu plano</div>
+        </div>
+        <div class="lg-item">
+          <img src="img/lifestyle-plan.jpg" alt="Plano semanal do Nexto com treino, alimentação e mindset" loading="lazy" />
+          <div class="lg-caption">Plano completo: treino, alimentação e mindset</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Quero esse resultado
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════ BENEFÍCIOS ═══════════════════ -->
 <section class="benefits" id="beneficios">
@@ -769,51 +709,23 @@
     </div>
 
     <div class="benefits-grid">
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="0">
-        <span class="benefit-icon">🔥</span>
-        <h4>Consistência real</h4>
-        <p>Finalmente consegue manter — porque o plano se adapta a você, não ao contrário.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="60">
-        <span class="benefit-icon">🔄</span>
-        <h4>Zero recomeços</h4>
-        <p>Quando falha, o sistema reorganiza. Nunca mais "começa segunda que segunda".</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="120">
-        <span class="benefit-icon">🎯</span>
-        <h4>Clareza total</h4>
-        <p>Sabe exatamente o que fazer em cada momento. Sem pesquisar, sem confusão.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="180">
-        <span class="benefit-icon">⚡</span>
-        <h4>Sem depender de motivação</h4>
-        <p>A equipe te chama, te lembra e te motiva. Você só precisa aparecer.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="240">
-        <span class="benefit-icon">🧠</span>
-        <h4>Feedback inteligente</h4>
-        <p>Sabe por que seu corpo não está respondendo e o que ajustar — com base em dados reais.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
-        <span class="benefit-icon">💰</span>
-        <h4>Equipe completa acessível</h4>
-        <p>Médico + nutricionista + personal + AI coach por uma fração do custo separado.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="360">
-        <span class="benefit-icon">🛡️</span>
-        <h4>Segurança médica</h4>
-        <p>Nada que você faz é ao acaso. Tudo é validado pelo seu médico com seu histórico de saúde.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="420">
-        <span class="benefit-icon">📈</span>
-        <h4>Resultados sustentáveis</h4>
-        <p>Não é dieta. É uma mudança gradual, segura e que você consegue manter para sempre.</p>
-      </div>
-      <div class="benefit-card" data-aos="fade-up" data-aos-delay="480">
-        <span class="benefit-icon">❤️</span>
-        <h4>Sem culpa</h4>
-        <p>O sistema entende que você é humano. Erros são parte do processo — e o plano já sabe disso.</p>
-      </div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="0"><span class="benefit-icon">🔥</span><h4>Consistência real</h4><p>Finalmente consegue manter — porque o plano se adapta a você, não ao contrário.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="60"><span class="benefit-icon">🔄</span><h4>Zero recomeços</h4><p>Quando falha, o sistema reorganiza. Nunca mais "começa segunda que segunda".</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="120"><span class="benefit-icon">🎯</span><h4>Clareza total</h4><p>Sabe exatamente o que fazer em cada momento. Sem pesquisar, sem confusão.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="180"><span class="benefit-icon">⚡</span><h4>Sem depender de motivação</h4><p>A equipe te chama, te lembra e te motiva. Você só precisa aparecer.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="240"><span class="benefit-icon">🧠</span><h4>Feedback inteligente</h4><p>Sabe por que seu corpo não está respondendo e o que ajustar — com base em dados reais.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="300"><span class="benefit-icon">💰</span><h4>Equipe completa acessível</h4><p>Médico + nutricionista + personal + AI coach por uma fração do custo separado.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="360"><span class="benefit-icon">🛡️</span><h4>Segurança médica</h4><p>Nada que você faz é ao acaso. Tudo é validado pelo seu médico com seu histórico de saúde.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="420"><span class="benefit-icon">📈</span><h4>Resultados sustentáveis</h4><p>Não é dieta. É uma mudança gradual, segura e que você consegue manter para sempre.</p></div>
+      <div class="benefit-card" data-aos="fade-up" data-aos-delay="480"><span class="benefit-icon">❤️</span><h4>Sem culpa</h4><p>O sistema entende que você é humano. Erros são parte do processo — e o plano já sabe disso.</p></div>
+    </div>
+
+    <div class="section-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Quero todos esses benefícios
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="section-cta__note">A$29/mês · Garantia 14 dias · Sem contrato</p>
     </div>
   </div>
 </section>
@@ -832,10 +744,7 @@
         <p class="story__quote">"Finalmente entendi o que estava errado. Meu médico e nutricionista nunca tinham conversado. Com o Nexto, em 3 meses perdi 9kg e não voltei um grama."</p>
         <div class="story__person">
           <img src="https://i.pravatar.cc/48?img=47" alt="" />
-          <div>
-            <strong>Camila R.</strong>
-            <small>Mãe, 34 anos · São Paulo</small>
-          </div>
+          <div><strong>Camila R.</strong><small>Mãe, 34 anos · São Paulo</small></div>
           <div class="story__result">−9kg</div>
         </div>
       </div>
@@ -845,10 +754,7 @@
         <p class="story__quote">"Viajo toda semana a trabalho. Sempre achei que era impossível emagrecer assim. O time adaptou tudo para hotéis e aeroportos. Resultado em 4 meses com viagem toda semana."</p>
         <div class="story__person">
           <img src="https://i.pravatar.cc/48?img=68" alt="" />
-          <div>
-            <strong>Rafael T.</strong>
-            <small>Executivo, 41 anos · Brisbane</small>
-          </div>
+          <div><strong>Rafael T.</strong><small>Executivo, 41 anos · Brisbane</small></div>
           <div class="story__result">−12kg</div>
         </div>
       </div>
@@ -858,18 +764,22 @@
         <p class="story__quote">"6 anos de efeito sanfona. O médico identificou um problema hormonal que meu antigo nutricionista nunca viu. Foi isso que estava me travando o tempo todo."</p>
         <div class="story__person">
           <img src="https://i.pravatar.cc/48?img=25" alt="" />
-          <div>
-            <strong>Juliana M.</strong>
-            <small>Professora, 28 anos · Melbourne</small>
-          </div>
+          <div><strong>Juliana M.</strong><small>Professora, 28 anos · Melbourne</small></div>
           <div class="story__result">−7kg</div>
         </div>
       </div>
     </div>
+
+    <div class="section-cta" data-aos="fade-up">
+      <a href="#precos" class="btn btn--primary btn--lg">
+        Começar minha transformação
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════ PREÇOS ═══════════════════ -->
+<!-- ═══════════════════ PREÇOS — 1 plano A$29 ═══════════════════ -->
 <section class="pricing" id="precos">
   <div class="pricing__bg">
     <div class="pricing__orb pricing__orb--1"></div>
@@ -877,82 +787,57 @@
   </div>
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <span class="eyebrow">Planos</span>
+      <span class="eyebrow">Plano</span>
       <h2>Menos do que um café por dia.<br/><span class="grad-text">Com toda uma equipe por você.</span></h2>
       <p class="section-desc">Médico + nutricionista + personal + AI coach — integrados, personalizados, disponíveis todos os dias.</p>
     </div>
 
-    <div class="pricing-cards" data-aos="fade-up">
-
-      <!-- Starter -->
-      <div class="pricing-card">
-        <div class="pc-badge pc-badge--subtle">Básico</div>
-        <h3>Starter</h3>
+    <div class="pricing-single" data-aos="fade-up">
+      <div class="pricing-card pricing-card--featured pricing-card--solo">
+        <div class="pc-badge pc-badge--primary">Plano completo 🔥</div>
+        <h3>Nexto</h3>
         <div class="pc-price">
           <span class="pc-cur">A$</span>
-          <span class="pc-val">14</span>
+          <span class="pc-val">29</span>
           <span class="pc-per">/mês</span>
         </div>
-        <p class="pc-desc">Perfeito para começar e sentir como é ter uma equipe do seu lado.</p>
-        <ul class="pc-features">
-          <li><span class="pf-check">✓</span> Nutricionista personalizado</li>
-          <li><span class="pf-check">✓</span> Personal trainer</li>
-          <li><span class="pf-check">✓</span> AI Coach 24h</li>
-          <li><span class="pf-check">✓</span> Plano adaptativo semanal</li>
-          <li><span class="pf-check pf-muted">✓</span> <span class="pf-muted-text">Médico (1x/mês)</span></li>
-          <li><span class="pf-no">✗</span> <span class="pf-muted-text">Check-ins diários ilimitados</span></li>
-        </ul>
-        <a href="#waitlist" class="btn btn--ghost btn--full">Começar com Starter</a>
-      </div>
+        <p class="pc-desc">Time completo. Acompanhamento diário. É assim que os famosos fazem — agora acessível para você.</p>
 
-      <!-- Pro — featured -->
-      <div class="pricing-card pricing-card--featured">
-        <div class="pc-badge pc-badge--primary">Mais popular 🔥</div>
-        <h3>Pro</h3>
-        <div class="pc-price">
-          <span class="pc-cur">A$</span>
-          <span class="pc-val">20</span>
-          <span class="pc-per">/mês</span>
+        <div class="pc-features-grid">
+          <ul class="pc-features">
+            <li><span class="pf-check">✓</span> Nutricionista personalizado</li>
+            <li><span class="pf-check">✓</span> Personal trainer</li>
+            <li><span class="pf-check">✓</span> AI Coach 24h</li>
+            <li><span class="pf-check">✓</span> Plano adaptativo diário</li>
+            <li><span class="pf-check">✓</span> Médico (acesso completo)</li>
+          </ul>
+          <ul class="pc-features">
+            <li><span class="pf-check">✓</span> Check-ins diários ilimitados</li>
+            <li><span class="pf-check">✓</span> Relatório semanal de progresso</li>
+            <li><span class="pf-check">✓</span> Psicólogo do comportamento</li>
+            <li><span class="pf-check">✓</span> Suporte prioritário</li>
+            <li><span class="pf-check">✓</span> Cancele quando quiser</li>
+          </ul>
         </div>
-        <p class="pc-desc">Time completo. Acompanhamento diário. É assim que os famosos fazem.</p>
-        <ul class="pc-features">
-          <li><span class="pf-check">✓</span> Nutricionista personalizado</li>
-          <li><span class="pf-check">✓</span> Personal trainer</li>
-          <li><span class="pf-check">✓</span> AI Coach 24h</li>
-          <li><span class="pf-check">✓</span> Plano adaptativo diário</li>
-          <li><span class="pf-check">✓</span> Médico (acesso completo)</li>
-          <li><span class="pf-check">✓</span> Check-ins diários ilimitados</li>
-          <li><span class="pf-check">✓</span> Relatório semanal de progresso</li>
-          <li><span class="pf-check">✓</span> Suporte prioritário</li>
-        </ul>
-        <a href="#waitlist" class="btn btn--primary btn--full btn--lg">Quero o plano Pro</a>
-        <p class="pc-note">Cancele quando quiser. Sem contratos.</p>
+
+        <a href="#waitlist" class="btn btn--primary btn--full btn--lg stripe-checkout-btn" data-plan="nexto" data-price="price_REPLACE_WITH_REAL_ID">
+          Quero minha equipe agora — A$29/mês
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5M9 3.75L14.25 9 9 14.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="pc-note">Cancele quando quiser. Sem contratos. Garantia de 14 dias.</p>
       </div>
 
-      <!-- Elite -->
-      <div class="pricing-card">
-        <div class="pc-badge pc-badge--subtle">Premium</div>
-        <h3>Elite</h3>
-        <div class="pc-price">
-          <span class="pc-cur">A$</span>
-          <span class="pc-val">39</span>
-          <span class="pc-per">/mês</span>
+      <!-- Social proof alongside price card -->
+      <div class="pricing-side" data-aos="fade-left" data-aos-delay="100">
+        <img src="img/lifestyle-notifications.jpg" alt="Usuária recebendo notificações da equipe Nexto" loading="lazy" class="pricing-side-img" />
+        <div class="pricing-side-stats">
+          <div class="pss-item"><span class="pss-num">+3.200</span><span class="pss-lbl">usuários ativos</span></div>
+          <div class="pss-item"><span class="pss-num">4.9★</span><span class="pss-lbl">avaliação média</span></div>
+          <div class="pss-item"><span class="pss-num">−8,4kg</span><span class="pss-lbl">resultado médio 3 meses</span></div>
         </div>
-        <p class="pc-desc">Para quem quer o máximo: time dedicado e resultados acelerados.</p>
-        <ul class="pc-features">
-          <li><span class="pf-check">✓</span> Tudo do plano Pro</li>
-          <li><span class="pf-check">✓</span> Personal dedicado</li>
-          <li><span class="pf-check">✓</span> Psicólogo do comportamento</li>
-          <li><span class="pf-check">✓</span> Análise de exames</li>
-          <li><span class="pf-check">✓</span> Videochamadas mensais</li>
-          <li><span class="pf-check">✓</span> Acesso antecipado a funcionalidades</li>
-        </ul>
-        <a href="#waitlist" class="btn btn--ghost btn--full">Quero o Elite</a>
       </div>
-
     </div>
 
-    <!-- Guarantee -->
     <div class="guarantee" data-aos="fade-up">
       <div class="guarantee__inner">
         <span class="guarantee__icon">🛡️</span>
@@ -962,7 +847,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -981,11 +865,11 @@
           Acesso antecipado · Vagas limitadas
         </div>
         <h2>Entre agora.<br/>Transforme sua saúde com um time real.</h2>
-        <p class="wl-sub">Garanta acesso antecipado ao Nexto e tenha uma equipe completa no seu bolso por A$20/mês.</p>
+        <p class="wl-sub">Garanta acesso antecipado ao Nexto e tenha uma equipe completa no seu bolso por A$29/mês.</p>
 
         <div class="wl-perks">
           <div class="wl-perk"><span>🎯</span><p>Acesso antecipado antes do lançamento</p></div>
-          <div class="wl-perk"><span>💰</span><p>Preço de fundador — A$20/mês para sempre</p></div>
+          <div class="wl-perk"><span>💰</span><p>Preço de fundador — A$29/mês para sempre</p></div>
           <div class="wl-perk"><span>🤝</span><p>Voz ativa no desenvolvimento do app</p></div>
           <div class="wl-perk"><span>📊</span><p>Relatório gratuito: "Por que as dietas falham"</p></div>
         </div>
@@ -1057,7 +941,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">Quanto custa ter médico + nutricionista + personal separados?<span class="faq-ic">+</span></button>
-        <div class="faq-a"><p>Em média, A$80-120 por consulta avulsa. Com o Nexto Pro, você tem acompanhamento contínuo de toda a equipe por A$20/mês. É o mesmo acesso, por uma fração do custo — e ainda com a vantagem da integração entre eles.</p></div>
+        <div class="faq-a"><p>Em média, A$80-120 por consulta avulsa. Com o Nexto, você tem acompanhamento contínuo de toda a equipe por A$29/mês. É o mesmo acesso, por uma fração do custo — e ainda com a vantagem da integração entre eles.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">E se eu falhar ou desistir por um tempo?<span class="faq-ic">+</span></button>

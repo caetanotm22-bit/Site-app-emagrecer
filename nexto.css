@@ -867,3 +867,206 @@ section{padding:var(--section-py) 0;position:relative}
    UTILITY
 ══════════════════════════════════════════════════════ */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ══════════════════════════════════════════════════════
+   SECTION CTA (botões de conversão entre seções)
+══════════════════════════════════════════════════════ */
+.section-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 56px;
+  text-align: center;
+}
+.section-cta__note {
+  font-size: .8rem;
+  color: var(--t3);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════
+   APP SHOWCASE
+══════════════════════════════════════════════════════ */
+.app-showcase { padding: var(--section-py) 0; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+.showcase-scroll {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.showcase-item {
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.showcase-item img {
+  width: 100%;
+  aspect-ratio: 9/16;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform .5s var(--ease);
+}
+.showcase-item:hover img { transform: scale(1.03); }
+.showcase-caption {
+  padding: 12px 16px;
+  font-size: .8rem;
+  color: var(--t2);
+  text-align: center;
+  margin: 0;
+}
+.showcase-cta { display: flex; justify-content: center; }
+
+/* ══════════════════════════════════════════════════════
+   LIFESTYLE BANNER
+══════════════════════════════════════════════════════ */
+.lifestyle-banner {
+  padding: var(--section-py) 0;
+  background: var(--bg-3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.lifestyle-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.lifestyle-img-wrap {
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  border: 1px solid var(--border-md);
+  box-shadow: var(--shadow-lg);
+}
+.lifestyle-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+.lifestyle-text h3 { font-size: clamp(1.4rem,2.5vw,2rem); margin-bottom: 16px; }
+.lifestyle-text p  { margin-bottom: 28px; }
+
+/* ══════════════════════════════════════════════════════
+   LIFESTYLE GALLERY
+══════════════════════════════════════════════════════ */
+.lifestyle-gallery { padding: var(--section-py) 0; background: var(--bg-2); }
+.lg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.lg-col { display: flex; flex-direction: column; gap: 16px; }
+.lg-item {
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+}
+.lg-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
+.lg-item--tall img { min-height: 340px; }
+.lg-item:hover img { transform: scale(1.04); }
+.lg-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 10px 14px;
+  font-size: .75rem;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,.65));
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════
+   PRICING SOLO (1 plano)
+══════════════════════════════════════════════════════ */
+.pricing-single {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: start;
+  max-width: 960px;
+  margin: 0 auto 48px;
+}
+.pricing-card--solo {
+  max-width: 100%;
+}
+.pc-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+  margin-bottom: 32px;
+}
+.pricing-side { display: flex; flex-direction: column; gap: 20px; }
+.pricing-side-img {
+  width: 100%;
+  border-radius: var(--r-2xl);
+  object-fit: cover;
+  aspect-ratio: 4/5;
+  border: 1px solid var(--border-md);
+  box-shadow: var(--shadow-lg);
+}
+.pricing-side-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px 16px;
+}
+.pss-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.pss-num {
+  font-size: 1.15rem;
+  font-weight: 800;
+  background: var(--g-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.pss-lbl { font-size: .68rem; color: var(--t3); font-weight: 600; line-height: 1.3; }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — new sections ≤ 1080px
+══════════════════════════════════════════════════════ */
+@media (max-width: 1080px) {
+  .pricing-single { grid-template-columns: 1fr; max-width: 600px; }
+  .pricing-side { display: none; } /* hide side on tablet, stats shown in card */
+  .lifestyle-inner { gap: 36px; }
+}
+
+@media (max-width: 768px) {
+  /* Showcase: vertical scroll on mobile */
+  .showcase-scroll {
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .showcase-item img { aspect-ratio: 9/16; min-width: 140px; }
+
+  /* Lifestyle banner */
+  .lifestyle-inner { grid-template-columns: 1fr; gap: 28px; }
+  .lifestyle-img { aspect-ratio: 16/9; }
+
+  /* Lifestyle gallery */
+  .lg-grid { grid-template-columns: 1fr; }
+  .lg-item--tall img { min-height: 220px; }
+
+  /* Pricing single */
+  .pricing-single { grid-template-columns: 1fr; }
+  .pc-features-grid { grid-template-columns: 1fr; }
+  .pricing-side { display: none; }
+}
+
+@media (max-width: 480px) {
+  /* Showcase: 2 cols visible, scroll for 3rd */
+  .showcase-scroll { grid-template-columns: repeat(3,1fr); min-width: 0; }
+  .showcase-item { min-width: 130px; }
+
+  /* Section CTAs */
+  .section-cta .btn { width: 100%; justify-content: center; }
+}
